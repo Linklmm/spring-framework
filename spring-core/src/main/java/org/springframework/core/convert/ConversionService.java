@@ -87,6 +87,9 @@ public interface ConversionService {
 	 * @throws ConversionException if a conversion exception occurred
 	 * @throws IllegalArgumentException if targetType is {@code null},
 	 * or {@code sourceType} is {@code null} but source is not {@code null}
+	 * source 要转换的源对象，可以为null
+	 * sourceType source的类型的上下文，如果source 为 null ，则可以为null
+	 * targetType：source要转换的类型的上下文。
 	 */
 	@Nullable
 	Object convert(@Nullable Object source, @Nullable TypeDescriptor sourceType, TypeDescriptor targetType);

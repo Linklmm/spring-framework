@@ -74,20 +74,33 @@ public class PropertySourcesPropertyResolver extends AbstractPropertyResolver {
 		return getProperty(key, String.class, false);
 	}
 
+	/**
+	 *
+	 * @param key 获取的key
+	 * @param targetValueType 目标 value 的类型
+	 * @param resolveNestedPlaceholders 是否解决嵌套占位符
+	 * @param <T>
+	 * @return
+	 */
 	@Nullable
 	protected <T> T getProperty(String key, Class<T> targetValueType, boolean resolveNestedPlaceholders) {
 		if (this.propertySources != null) {
+			// 遍历 propertySources 数组
 			for (PropertySource<?> propertySource : this.propertySources) {
 				if (logger.isTraceEnabled()) {
 					logger.trace("Searching for key '" + key + "' in PropertySource '" +
 							propertySource.getName() + "'");
 				}
+				// 获得 key 对应的 value 值
 				Object value = propertySource.getProperty(key);
 				if (value != null) {
+					// 如果解决嵌套占位符，解析占位符
 					if (resolveNestedPlaceholders && value instanceof String) {
 						value = resolveNestedPlaceholders((String) value);
 					}
+					// 如果未找到 key 对应的值，则打印日志
 					logKeyFound(key, propertySource, value);
+					// value 的类型转换
 					return convertValueIfNecessary(value, targetValueType);
 				}
 			}

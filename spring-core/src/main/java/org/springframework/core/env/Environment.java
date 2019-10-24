@@ -67,6 +67,8 @@ package org.springframework.core.env;
  * @see org.springframework.context.ConfigurableApplicationContext#getEnvironment
  * @see org.springframework.context.ConfigurableApplicationContext#setEnvironment
  * @see org.springframework.context.support.AbstractApplicationContext#createEnvironment
+ *
+ * 表示当前应用程序正在运行的环境
  */
 public interface Environment extends PropertyResolver {
 
@@ -82,6 +84,8 @@ public interface Environment extends PropertyResolver {
 	 * @see #getDefaultProfiles
 	 * @see ConfigurableEnvironment#setActiveProfiles
 	 * @see AbstractEnvironment#ACTIVE_PROFILES_PROPERTY_NAME
+	 *
+	 * // 返回此环境下激活的配置文件集
 	 */
 	String[] getActiveProfiles();
 
@@ -91,6 +95,8 @@ public interface Environment extends PropertyResolver {
 	 * @see #getActiveProfiles
 	 * @see ConfigurableEnvironment#setDefaultProfiles
 	 * @see AbstractEnvironment#DEFAULT_PROFILES_PROPERTY_NAME
+	 *
+	 * 如果未设置激活配置文件，则返回默认的激活的配置文件集
 	 */
 	String[] getDefaultProfiles();
 
